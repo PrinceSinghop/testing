@@ -1,9 +1,9 @@
-let money = 0;
-let bread = 0;
-let pao = 0;
-let patties = 0;
-let creamRoll = 0;
-let workers = 0;
+let money = 1000;
+let bread = 10;
+let pao = 10;
+let patties = 10;
+let creamRoll = 10;
+let workers = 1;
 let level = 1;
 
 function updateUI() {
@@ -120,11 +120,15 @@ setInterval(() => {
 
 ```
 bread += workers;
+pao += Math.floor(workers / 2);
+patties += Math.floor(workers / 3);
+creamRoll += Math.floor(workers / 5);
 
 updateUI();
 ```
 
 }, 1000);
+
 
 function saveGame() {
 
