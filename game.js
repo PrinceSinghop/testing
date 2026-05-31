@@ -1,5 +1,8 @@
 let money = 0;
 let bread = 0;
+let pao = 0;
+let patties = 0;
+let creamRoll = 0;
 let workers = 0;
 let level = 1;
 
@@ -21,6 +24,26 @@ function updateUI(){
 }
 
 function bakeBread(){
+    function makePao(){
+
+    pao++;
+
+    updateUI();
+}
+
+function makePatties(){
+
+    patties++;
+
+    updateUI();
+}
+
+function makeCreamRoll(){
+
+    creamRoll++;
+
+    updateUI();
+}
 
     bread += level;
 
@@ -98,6 +121,32 @@ function loadGame(){
         workers = save.workers;
         level = save.level;
     }
+
+    updateUI();
+}
+function sellPao(){
+
+    money += pao * 15;
+
+    pao = 0;
+
+    updateUI();
+}
+
+function sellPatties(){
+
+    money += patties * 25;
+
+    patties = 0;
+
+    updateUI();
+}
+
+function sellCreamRoll(){
+
+    money += creamRoll * 40;
+
+    creamRoll = 0;
 
     updateUI();
 }
