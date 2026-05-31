@@ -6,149 +6,166 @@ let creamRoll = 0;
 let workers = 0;
 let level = 1;
 
-function updateUI(){
+function updateUI() {
 
-    document.getElementById("money").innerText =
-        "₹" + money;
+```
+document.getElementById("money").innerText = "₹" + money;
+document.getElementById("bread").innerText = bread;
 
-    document.getElementById("bread").innerText =
-        bread;
+document.getElementById("pao").innerText = pao;
+document.getElementById("patties").innerText = patties;
+document.getElementById("creamRoll").innerText = creamRoll;
 
-    document.getElementById("workers").innerText =
-        workers;
+document.getElementById("workers").innerText = workers;
+document.getElementById("level").innerText = level;
 
-    document.getElementById("level").innerText =
-        level;
+saveGame();
+```
 
-    saveGame();
 }
 
-function bakeBread(){
-    function makePao(){
+function bakeBread() {
+bread += level;
+updateUI();
+}
 
-    pao++;
+function makePao() {
+pao += level;
+updateUI();
+}
 
+function makePatties() {
+patties += level;
+updateUI();
+}
+
+function makeCreamRoll() {
+creamRoll += level;
+updateUI();
+}
+
+function sellBread() {
+
+```
+if (bread > 0) {
+    money += bread * 10;
+    bread = 0;
     updateUI();
 }
+```
 
-function makePatties(){
+}
 
-    patties++;
+function sellPao() {
 
+```
+if (pao > 0) {
+    money += pao * 15;
+    pao = 0;
     updateUI();
 }
+```
 
-function makeCreamRoll(){
+}
 
-    creamRoll++;
+function sellPatties() {
 
+```
+if (patties > 0) {
+    money += patties * 25;
+    patties = 0;
     updateUI();
 }
+```
 
-    bread += level;
+}
 
+function sellCreamRoll() {
+
+```
+if (creamRoll > 0) {
+    money += creamRoll * 40;
+    creamRoll = 0;
     updateUI();
 }
+```
 
-function sellBread(){
-
-    if(bread > 0){
-
-        money += bread * 10;
-
-        bread = 0;
-
-        updateUI();
-    }
 }
 
-function buyWorker(){
+function buyWorker() {
 
-    if(money >= 100){
+```
+if (money >= 100) {
+    money -= 100;
+    workers++;
+    updateUI();
+}
+```
 
-        money -= 100;
-
-        workers++;
-
-        updateUI();
-    }
 }
 
-function upgradeBakery(){
+function upgradeBakery() {
 
-    if(money >= 500){
+```
+if (money >= 500) {
+    money -= 500;
+    level++;
+    updateUI();
+}
+```
 
-        money -= 500;
-
-        level++;
-
-        updateUI();
-    }
 }
 
 setInterval(() => {
 
-    bread += workers;
+```
+bread += workers;
 
-    updateUI();
+updateUI();
+```
 
-},1000);
+}, 1000);
 
-function saveGame(){
+function saveGame() {
 
-    localStorage.setItem(
-        "bakerySave",
-        JSON.stringify({
-            money,
-            bread,
-            workers,
-            level
-        })
-    );
+```
+localStorage.setItem(
+    "bakerySave",
+    JSON.stringify({
+        money,
+        bread,
+        pao,
+        patties,
+        creamRoll,
+        workers,
+        level
+    })
+);
+```
+
 }
 
-function loadGame(){
+function loadGame() {
 
-    let save =
-        JSON.parse(
-            localStorage.getItem("bakerySave")
-        );
+```
+let save = JSON.parse(
+    localStorage.getItem("bakerySave")
+);
 
-    if(save){
+if (save) {
 
-        money = save.money;
-        bread = save.bread;
-        workers = save.workers;
-        level = save.level;
-    }
-
-    updateUI();
-}
-function sellPao(){
-
-    money += pao * 15;
-
-    pao = 0;
-
-    updateUI();
+    money = save.money || 0;
+    bread = save.bread || 0;
+    pao = save.pao || 0;
+    patties = save.patties || 0;
+    creamRoll = save.creamRoll || 0;
+    workers = save.workers || 0;
+    level = save.level || 1;
 }
 
-function sellPatties(){
+updateUI();
+```
 
-    money += patties * 25;
-
-    patties = 0;
-
-    updateUI();
-}
-
-function sellCreamRoll(){
-
-    money += creamRoll * 40;
-
-    creamRoll = 0;
-
-    updateUI();
 }
 
 loadGame();
