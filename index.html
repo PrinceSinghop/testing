@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Tycoon</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍞 Bakery Tycoon</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Money</h2>
+        <p id="money">₹0</p>
+    </div>
+
+    <div class="card">
+        <h2>Bread Stock</h2>
+        <p id="bread">0</p>
+    </div>
+
+    <div class="card">
+        <h2>Bakery Level</h2>
+        <p id="level">1</p>
+    </div>
+
+</div>
+
+<div class="buttons">
+
+    <button onclick="bakeBread()">
+        Bake Bread
+    </button>
+
+    <button onclick="sellBread()">
+        Sell Bread
+    </button>
+
+    <button onclick="buyWorker()">
+        Hire Worker (₹100)
+    </button>
+
+    <button onclick="upgradeBakery()">
+        Upgrade Bakery (₹500)
+    </button>
+
+</div>
+
+<div class="stats">
+    <p>Workers: <span id="workers">0</span></p>
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
